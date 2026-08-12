@@ -7,13 +7,13 @@ This project serves as an end-to-end framework demonstrating data lifecycle mana
 
 ## ⚙️ Core Technical Features
 * **Automated Data Sourcing:** Connects programmatically to live remote CSV endpoints hosted by FRED.
-* **Algorithmic Data Transformation:** Normalizes data structures, executes chronological sorting, and resolves missing datasets (`NaN` handling) via Python (Pandas).
+- **Algorithmic Data Transformation:** Normalizes data structures, converts date and numeric fields, and handles missing values (`NaN`) using Python (Pandas).
 * **Feature Engineering:** Calculates Year-over-Year (YoY) real estate growth dynamics and isolates seasonal markers.
 * **Statistical Outlier Detection:** Applies a Standard Deviation Z-Score framework ($|Z| > 3$) to flag critical economic market anomalies and structural shifts.
 
 ## 📁 Repository Directory Structure
 * `data_pipeline.py`: Main execution script containing the data ingestion and transformation logic.
-* `data/processed/`: Dedicated workspace containing optimized, cleaned `.csv` datasets optimized for PowerBI integration.
+- `data/processed/`: Contains cleaned CSV data and the SQLite database used for analytics and Power BI integration.
 
 ## 🛠️ Tech Stack & Methodology
 * **Language:** Python
