@@ -20,3 +20,41 @@ This project serves as an end-to-end framework demonstrating data lifecycle mana
 * **Core Libraries:** Pandas, NumPy, OS
 * **Target Applications:** Business Analytics, Urban Informatics, Predictive Data Mining
 
+## 📊 Power BI Dashboard
+
+The project includes an interactive Power BI dashboard for exploring long-term U.S. housing market trends from 1963–2026.
+
+### Dashboard Highlights
+
+* **Highest Median House Price:** 443K
+* **Average YoY Price Growth:** 5.29%
+* **Total Quarterly Records:** 254
+* Interactive **Year slicer** for filtering the analysis
+* Long-term median house price trend analysis
+* Year-over-Year housing price growth analysis
+* Annual average median house price comparison
+
+### Dashboard Preview
+
+![US Real Estate Analytics Dashboard](powerbi/US_Real_Estate_Analytics_Dashboard.png)
+
+The Power BI source file is available here:
+
+[`US_Real_Estate_Analytics_Dashboard.pbix`](powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
+
+## 🔄 Current Development Roadmap
+
+### Completed
+
+* Automated data ingestion and cleaning
+* Feature engineering and YoY growth calculation
+* SQLite database pipeline
+* SQL validation and analytical queries
+* Interactive Power BI dashboard
+* Dashboard screenshot and Power BI source file
+
+### Upcoming
+
+* **Machine Learning Forecasting:** Build a model for future housing-market trend prediction.
+* **AI Prediction Automation:** Develop an automated process for generating and delivering prediction results.
+* **Final Integration & Documentation:** Polish the complete pipeline, improve the project homepage, and document the end-to-end workflow.
