@@ -292,7 +292,6 @@ The project includes an interactive Power BI dashboard for exploring long-term U
 The interactive Power BI source file is available here:
 
 [**US_Real_Estate_Analytics_Dashboard.pbix**](./powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
-
 ---
 
 # 📁 Repository Structure
