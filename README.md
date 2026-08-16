@@ -275,19 +275,23 @@ The project includes an interactive Power BI dashboard for exploring long-term U
 
 ## Dashboard Highlights
 
-* Highest Median House Price: **443K**
-* Average YoY Price Growth: **5.29%**
-* Total Quarterly Records: **254**
-* Interactive Year slicer
-* Long-term median house-price trend
-* Year-over-Year housing-price growth analysis
-* Annual average median house-price comparison
+- Highest Median House Price: **$443K**
+- Average YoY Price Growth: **5.29%**
+- Total Quarterly Records: **254**
+- Interactive **Year slicer**
+- Long-term median house-price trend
+- Year-over-Year housing-price growth analysis
+- Annual average median house-price comparison
 
 ### Dashboard Preview
 
-The Power BI source file is available here:
+![US Real Estate Analytics Dashboard](./powerbi/US_Real_Estate_Analytics_Dashboard.png)
 
-[`US_Real_Estate_Analytics_Dashboard.pbix`](https://github.com/Shivanisinghpari/US-Real-Estate-Analytics-AI/blob/main/powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
+### Power BI Source File
+
+The interactive Power BI source file is available here:
+
+[**US_Real_Estate_Analytics_Dashboard.pbix**](./powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
 
 ---
 
