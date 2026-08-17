@@ -304,7 +304,7 @@ Walk-forward validation was used to evaluate model stability across multiple his
 
 ![Walk-Forward Model Comparison](data/forecasts/research_results/01_walk_forward_model_comparison.png)
 
-The Random Forest Growth model achieved the strongest overall walk-forward performance among the evaluated machine-learning approaches.
+The Random Forest Growth model achieved the lowest overall MAPE among the evaluated machine-learning models.
 
 ---
 
@@ -319,7 +319,7 @@ The regime-aware model was evaluated across four market conditions:
 
 ![Market Regime Comparison](data/forecasts/research_results/02_market_regime_comparison.png)
 
-The largest improvement occurred during Rapid Growth periods, where the regime-aware model reduced MAPE from **4.94% to 1.71%**, representing a **65.30% improvement**.
+The largest improvement occurred during Rapid Growth periods, where the regime-aware model reduced MAPE from **4.94% to 1.71%**, representing a 65.30% reduction in MAPE.
 
 However, the regime-aware model did not outperform the original model in every market regime, indicating that its effectiveness is dependent on market conditions.
 
