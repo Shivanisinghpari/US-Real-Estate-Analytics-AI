@@ -567,16 +567,16 @@ The project is organized into separate stages so that the data-processing, forec
 
 ## Experimental Workflow
 
-The main workflow consists of:
+The complete workflow consists of:
 
 1. **Data Acquisition**
    Retrieve historical U.S. housing-market data from the FRED system.
 
 2. **Data Processing**
-   Clean, validate, transform, and store the historical data using Python and Pandas.
+   Clean, validate, transform, and prepare the historical data using Python and Pandas.
 
 3. **Database Pipeline**
-   Load processed data into SQLite and perform validation queries.
+   Load processed data into SQLite and perform validation and analytical SQL queries.
 
 4. **Feature Engineering**
    Generate temporal, lag-based, growth, and rolling statistical features.
@@ -585,7 +585,7 @@ The main workflow consists of:
    Run ARIMA and SARIMA models as statistical forecasting benchmarks.
 
 6. **Machine-Learning Forecasting**
-   Train Random Forest models, including the baseline, original, growth-aware, and regime-aware approaches.
+   Train and evaluate Random Forest models, including the baseline, original, growth-aware, and regime-aware approaches.
 
 7. **Walk-Forward Validation**
    Evaluate models sequentially using historical training windows and subsequent unseen observations.
@@ -597,13 +597,16 @@ The main workflow consists of:
    Analyze feature contributions using Random Forest feature importance, permutation importance, and SHAP.
 
 10. **Future Forecasting**
-    Generate forecasts for the next eight quarters.
+    Generate housing-price forecasts for the next eight quarters.
 
 11. **Uncertainty Estimation**
     Construct empirical 95% prediction intervals using historical walk-forward residuals.
 
-12. **Visualization**
-    Generate research-result figures and explore long-term housing-market trends through Power BI.
+12. **Research Visualization**
+    Generate model-comparison, regime-analysis, feature-importance, and future-forecast visualizations.
+
+13. **Business Intelligence Visualization**
+    Explore long-term U.S. housing-market trends through the Power BI dashboard.
 
 ## Main Scripts
 
@@ -612,8 +615,8 @@ The major components are organized as follows:
 * `data_pipeline.py` — data acquisition, cleaning, transformation, and feature preparation.
 * `database_pipeline.py` — SQLite database creation and data ingestion.
 * `test_queries.py` — SQL validation and analytical queries.
-* `ML/Forecasting/` — ARIMA, SARIMA, evaluation, and forecasting visualization.
-* `ML/Predictive/` — machine-learning models, feature engineering, regime analysis, explainability, validation, and future forecasting.
+* `ML/Forecasting/` — ARIMA, SARIMA, model evaluation, and forecasting visualization.
+* `ML/Predictive/` — machine-learning models, feature engineering, regime analysis, explainability, validation, uncertainty estimation, and future forecasting.
 * `powerbi/` — Power BI dashboard source file and dashboard preview.
 
 ## Reproducing the Experiments
@@ -633,7 +636,7 @@ pip install pandas numpy scikit-learn statsmodels shap matplotlib
 
 ### Running the Pipeline
 
-After installing the required dependencies, the main components can be executed independently according to the experimental workflow described above.
+After installing the required dependencies, the project components can be executed independently according to the experimental workflow described above.
 
 The repository contains the processed datasets and generated research outputs used to document the completed experiments.
 
@@ -650,13 +653,13 @@ Research-result visualizations are stored under:
 data/forecasts/research_results/
 ```
 
-The Power BI dashboard source file is available under:
+The Power BI dashboard files are available under:
 
 ```text
-powerbi/US_Real_Estate_Analytics_Dashboard.pbix
+powerbi/
 ```
 
-Individual scripts under `ML/Forecasting/` and `ML/Predictive/` correspond to specific stages of the experimental workflow.
+Individual scripts under `ML/Forecasting/` and `ML/Predictive/` correspond to specific stages of the forecasting and machine-learning workflow.
 
 ### Reproducibility Considerations
 
@@ -664,7 +667,7 @@ The experiments use chronological data and walk-forward validation to reduce tem
 
 Model results may vary slightly depending on the Python environment, package versions, and model randomization settings.
 
-The repository includes the processed datasets and generated research outputs used to document the completed experiments, allowing the reported results to be inspected without rerunning every stage of the pipeline.
+The repository includes the processed datasets, forecasting outputs, research visualizations, and Power BI dashboard used to document the completed experiments. This allows the reported results and supporting analyses to be inspected directly from the repository.
 
 ---
 
@@ -704,9 +707,9 @@ The repository includes the processed datasets and generated research outputs us
 
 The core experimental and analytical components of the project are complete.
 
-The repository now contains the data pipeline, forecasting models, predictive experiments, validation procedures, explainability analysis, uncertainty estimation, research visualizations, and Power BI dashboard.
+The repository contains the complete data-engineering pipeline, statistical forecasting models, machine-learning experiments, walk-forward validation, market-regime analysis, explainability analysis, uncertainty estimation, future forecasting, research visualizations, and Power BI dashboard.
 
-The remaining work is limited to final repository housekeeping and optional automation improvements.
+The generated datasets, forecasting outputs, research-result visualizations, and dashboard files are included in the repository to support inspection and reproducibility.
 
 ---
 
@@ -718,9 +721,10 @@ The final system combines **data engineering, predictive analytics, time-series 
 
 The experiments indicate that historical growth dynamics are important predictors of future housing prices and that market-regime information can provide substantial forecasting benefits under specific conditions, particularly during Rapid Growth periods.
 
-The strongest regime-specific result was a **65.30% reduction in MAPE**, from **4.94% to 1.71%**, when comparing the Original Random Forest with the Regime-Aware Random Forest during Rapid Growth periods.
+The strongest regime-specific result was a **65.30% reduction in MAPE**, from **4.94% to **1.71%**, when comparing the Original Random Forest with the Regime-Aware Random Forest during Rapid Growth periods.
 
 However, the experiments also demonstrate that this benefit is not universal. The Regime-Aware Random Forest performed worse during Stable and Declining periods, highlighting the importance of evaluating forecasting strategies across different market conditions.
 
 Overall, the project provides a complete experimental framework for investigating how historical market dynamics and regime information can influence housing-price forecasting performance while explicitly considering model validation, explainability, and prediction uncertainty.
+
 
