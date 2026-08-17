@@ -558,23 +558,72 @@ US-Real-Estate-Analytics-AI/
 
 # ▶️ Reproducibility
 
-The project is organized so that the major stages of the forecasting workflow are separated into data-processing, forecasting, predictive-modeling, and visualization components.
+The project is organized into separate stages so that the data-processing, forecasting, predictive-modeling, explainability, uncertainty-estimation, and visualization components can be executed and evaluated independently.
+
+## Experimental Workflow
 
 The main workflow consists of:
 
-1. Retrieve and process historical housing-market data.
-2. Generate engineered temporal and lag-based features.
-3. Run statistical forecasting benchmarks.
-4. Train and evaluate Random Forest forecasting models.
-5. Perform walk-forward validation.
-6. Evaluate market-regime performance.
-7. Analyze feature importance and SHAP explanations.
-8. Generate future forecasts and empirical prediction intervals.
-9. Visualize results through Power BI and research-result figures.
+1. **Data Acquisition**  
+   Retrieve historical U.S. housing-market data from the FRED system.
 
-The relevant scripts are organized under `ML/Forecasting/`, `ML/Predictive/`, and the project-level data pipeline.
+2. **Data Processing**  
+   Clean, validate, transform, and store the historical data using Python and Pandas.
 
----
+3. **Database Pipeline**  
+   Load processed data into SQLite and perform validation queries.
+
+4. **Feature Engineering**  
+   Generate temporal, lag-based, growth, and rolling statistical features.
+
+5. **Statistical Forecasting**  
+   Run ARIMA and SARIMA models as statistical forecasting benchmarks.
+
+6. **Machine-Learning Forecasting**  
+   Train Random Forest models, including the baseline, original, growth-aware, and regime-aware approaches.
+
+7. **Walk-Forward Validation**  
+   Evaluate models sequentially using historical training windows and subsequent unseen observations.
+
+8. **Market-Regime Analysis**  
+   Evaluate forecasting performance across Declining, Moderate Growth, Rapid Growth, and Stable market conditions.
+
+9. **Model Explainability**  
+   Analyze feature contributions using Random Forest feature importance, permutation importance, and SHAP.
+
+10. **Future Forecasting**  
+    Generate forecasts for the next eight quarters.
+
+11. **Uncertainty Estimation**  
+    Construct empirical 95% prediction intervals using historical walk-forward residuals.
+
+12. **Visualization**  
+    Generate research-result figures and explore long-term housing-market trends through Power BI.
+
+## Main Scripts
+
+The major components are organized as follows:
+
+- `data_pipeline.py` — data acquisition, cleaning, transformation, and feature preparation.
+- `database_pipeline.py` — SQLite database creation and data ingestion.
+- `test_queries.py` — SQL validation and analytical queries.
+- `ML/Forecasting/` — ARIMA, SARIMA, evaluation, and forecasting visualization.
+- `ML/Predictive/` — machine-learning models, feature engineering, regime analysis, explainability, validation, and future forecasting.
+- `powerbi/` — Power BI dashboard source file and dashboard preview.
+
+## Reproducing the Experiments
+
+A typical reproduction workflow is:
+
+```bash
+# Clone the repository
+git clone https://github.com/Shivanisinghpari/US-Real-Estate-Analytics-AI.git
+
+# Enter the project directory
+cd US-Real-Estate-Analytics-AI
+
+# Install the required Python packages
+pip install pandas numpy scikit-learn statsmodels shap matplotlib
 
 # 📈 Project Status
 
