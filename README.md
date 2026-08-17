@@ -294,6 +294,59 @@ The interactive Power BI source file is available here:
 [**US_Real_Estate_Analytics_Dashboard.pbix**](./powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
 ---
 
+# 🔬 Research Results
+
+The final experimental results are summarized through four key visualizations covering model validation, market-regime performance, feature importance, and future forecast uncertainty.
+
+## 1. Walk-Forward Model Comparison
+
+Walk-forward validation was used to evaluate model stability across multiple historical periods rather than relying on a single train/test split.
+
+![Walk-Forward Model Comparison](data/forecasts/research_results/01_walk_forward_model_comparison.png)
+
+The Random Forest Growth model achieved the strongest overall walk-forward performance among the evaluated machine-learning approaches.
+
+---
+
+## 2. Market-Regime Comparison
+
+The regime-aware model was evaluated across four market conditions:
+
+- Declining
+- Moderate Growth
+- Rapid Growth
+- Stable
+
+![Market Regime Comparison](data/forecasts/research_results/02_market_regime_comparison.png)
+
+The largest improvement occurred during Rapid Growth periods, where the regime-aware model reduced MAPE from **4.94% to 1.71%**, representing a **65.30% improvement**.
+
+However, the regime-aware model did not outperform the original model in every market regime, indicating that its effectiveness is dependent on market conditions.
+
+---
+
+## 3. Feature Importance
+
+Multiple explainability techniques were used to investigate which historical features contributed most strongly to Random Forest predictions.
+
+![Feature Importance](data/forecasts/research_results/03_feature_importance.png)
+
+Growth-related lag features, particularly `Growth_Lag_1`, were among the most influential predictors.
+
+SHAP analysis provided an additional perspective on feature contributions and further highlighted the importance of recent growth and lagged price information.
+
+---
+
+## 4. Future Forecast & Prediction Uncertainty
+
+The final forecasting pipeline generates predictions for the next eight quarters and estimates a 95% empirical prediction interval based on historical walk-forward residuals.
+
+![Future Forecast Uncertainty](data/forecasts/research_results/04_future_forecast_uncertainty.png)
+
+The forecast begins after the final observed quarter, **April 2026**, and extends through **April 2028**.
+
+The prediction interval illustrates the uncertainty associated with long-term housing-price forecasting rather than presenting the predicted values as exact future outcomes.
+
 # 📁 Repository Structure
 
 ```text
