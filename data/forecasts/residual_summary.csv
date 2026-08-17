@@ -1,0 +1,9 @@
+Metric,Value
+Mean Residual,2813.1139865298846
+Mean Absolute Error,10532.404429595403
+RMSE,14780.041786120868
+Mean Percentage Error,0.9033293267079295
+MAPE,3.652676297419207
+Underpredictions,165.0
+Overpredictions,135.0
+Total Predictions,300.0
