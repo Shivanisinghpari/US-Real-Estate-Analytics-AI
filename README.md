@@ -537,49 +537,24 @@ US-Real-Estate-Analytics-AI/
 ├── .gitignore
 └── README.md
 ```
-# 🛠️ Tech Stack
+# 🛠️ Tech Stack & Methodology
 
-### Programming
-
-* Python
-
-### Data Processing
-
-* Pandas
-* NumPy
-
-### Machine Learning
-
-* Scikit-learn
-* Random Forest
-* Feature Engineering
-* Walk-Forward Validation
-
-### Statistical Forecasting
-
-* ARIMA
-* SARIMA
-
-### Explainable AI
-
-* SHAP
-* Permutation Feature Importance
-* Random Forest Feature Importance
-
-### Database & Analytics
-
-* SQLite
-* SQL
-
-### Business Intelligence
-
-* Microsoft Power BI
-
-### Data Source
-
-* Federal Reserve Economic Data (FRED)
-
----
+| Category | Technologies / Methods | Purpose |
+|----------|------------------------|---------|
+| Programming | Python | Data processing, forecasting, machine-learning experiments, and automation |
+| Data Processing | Pandas, NumPy | Data cleaning, transformation, feature engineering, and numerical analysis |
+| Data Acquisition | FRED | Automated retrieval of historical U.S. housing-market data |
+| Database | SQLite, SQL | Structured data storage, validation, and analytical queries |
+| Machine Learning | Scikit-learn, Random Forest | Housing-price prediction and comparative model evaluation |
+| Time-Series Forecasting | ARIMA, SARIMA | Statistical forecasting benchmarks |
+| Feature Engineering | Lag features, growth features, rolling statistics, temporal features | Capturing historical housing-market dynamics |
+| Validation | Walk-Forward Validation | Time-aware model evaluation and reduction of temporal leakage |
+| Market Analysis | Market-Regime Detection | Evaluation of model performance under different housing-market conditions |
+| Explainable AI | SHAP, Permutation Importance, Random Forest Feature Importance | Understanding feature contributions and model behavior |
+| Uncertainty Estimation | Empirical Prediction Intervals | Quantifying uncertainty around future forecasts |
+| Visualization | Matplotlib, Power BI | Research-result visualization and interactive business intelligence |
+| Business Intelligence | Microsoft Power BI | Interactive exploration of long-term housing-market trends |
+| Version Control | Git, GitHub | Project versioning, reproducibility, and research presentation |
 
 # ▶️ Reproducibility
 
