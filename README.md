@@ -150,14 +150,14 @@ The regime-aware experiment used five sequential validation folds covering histo
 
 The following results were obtained from the completed forecasting experiments.
 
-| Model                      |          MAE |         RMSE |      MAPE |
-| -------------------------- | -----------: | -----------: | --------: |
-| Random Forest Growth Model |     8,676.12 |    10,729.52 | **2.42%** |
-| Random Forest Original     | **7,674.84** | **9,911.15** |     2.71% |
-| Regime-Aware Random Forest |     7,690.20 |     9,936.54 |     2.72% |
-| SARIMA(1,1,1)(1,1,1,4)     |    36,308.37 |    47,377.76 |     9.26% |
-| ARIMA(1,1,1)               |    59,836.50 |    71,855.06 |    15.55% |
-| Random Forest Baseline     |    92,126.11 |   107,026.55 |    24.08% |
+| Model | MAE | RMSE | MAPE |
+|---|---:|---:|---:|
+| Random Forest Growth Model | 8,676.12 | 10,729.52 | **2.42%** |
+| Random Forest Original | **7,674.84** | **9,911.15** | 2.71% |
+| Regime-Aware Random Forest | 7,690.20 | 9,936.54 | 2.72% |
+| SARIMA(1,1,1)(1,1,1,4) | 36,308.37 | 47,377.76 | 9.26% |
+| ARIMA(1,1,1) | 59,836.50 | 71,855.06 | 15.55% |
+| Random Forest Baseline | 92,126.11 | 107,026.55 | 24.08% |
 
 MAPE was used as the primary model-selection metric because it provides an interpretable percentage-based measure of forecasting error.
 
@@ -175,12 +175,12 @@ Therefore, the growth-aware model is considered the best overall model when MAPE
 
 The regime-aware Random Forest was evaluated separately across four historical market conditions.
 
-| Market Regime   | Original RF MAPE | Regime-Aware RF MAPE | MAPE Improvement |
-| --------------- | ---------------: | -------------------: | ---------------: |
-| Declining       |            3.25% |                3.55% |           -9.35% |
-| Moderate Growth |            2.88% |                2.42% |          +15.91% |
-| Rapid Growth    |            4.94% |            **1.71%** |      **+65.30%** |
-| Stable          |            0.82% |                2.15% |         -162.76% |
+| Market Regime | Original RF MAPE | Regime-Aware RF MAPE | MAPE Improvement |
+|---|---:|---:|---:|
+| Declining | 3.25% | 3.55% | -9.35% |
+| Moderate Growth | 2.88% | 2.42% | +15.91% |
+| Rapid Growth | 4.94% | **1.71%** | **+65.30%** |
+| Stable | 0.82% | 2.15% | -162.76% |
 
 ## Key Finding
 
@@ -221,16 +221,16 @@ Three complementary approaches were evaluated:
 
 The strongest features identified by the Random Forest were:
 
-| Rank | Feature        | Importance |
-| ---: | -------------- | ---------: |
-|    1 | Growth_Lag_1   |     0.2698 |
-|    2 | Growth_Lag_4   |     0.2357 |
-|    3 | Quarter        |     0.1066 |
-|    4 | Price_Lag_1    |     0.0946 |
-|    5 | Price_Lag_4    |     0.0852 |
-|    6 | Time_Index     |     0.0781 |
-|    7 | Rolling_Mean_4 |     0.0741 |
-|    8 | Year           |     0.0558 |
+| Rank | Feature | Importance |
+|---:|---|---:|
+| 1 | Growth_Lag_1 | **0.2698** |
+| 2 | Growth_Lag_4 | 0.2357 |
+| 3 | Quarter | 0.1066 |
+| 4 | Price_Lag_1 | 0.0946 |
+| 5 | Price_Lag_4 | 0.0852 |
+| 6 | Time_Index | 0.0781 |
+| 7 | Rolling_Mean_4 | 0.0741 |
+| 8 | Year | 0.0558 |
 
 The results indicate that recent housing-market growth dynamics are particularly important to the Random Forest model.
 
@@ -252,16 +252,16 @@ SHAP analysis was subsequently enabled to provide a more detailed explanation of
 
 The resulting mean absolute SHAP importance was:
 
-| Rank | Feature        | Mean Absolute SHAP |
-| ---: | -------------- | -----------------: |
-|    1 | Growth_Lag_1   |             0.6372 |
-|    2 | Price_Lag_1    |             0.5900 |
-|    3 | Price_Lag_4    |             0.4797 |
-|    4 | Growth_Lag_4   |             0.3798 |
-|    5 | Time_Index     |             0.3340 |
-|    6 | Quarter        |             0.3238 |
-|    7 | Rolling_Mean_4 |             0.2448 |
-|    8 | Year           |             0.2184 |
+| Rank | Feature | Mean Absolute SHAP |
+|---:|---|---:|
+| 1 | Growth_Lag_1 | **0.6372** |
+| 2 | Price_Lag_1 | 0.5900 |
+| 3 | Price_Lag_4 | 0.4797 |
+| 4 | Growth_Lag_4 | 0.3798 |
+| 5 | Time_Index | 0.3340 |
+| 6 | Quarter | 0.3238 |
+| 7 | Rolling_Mean_4 | 0.2448 |
+| 8 | Year | 0.2184 |
 
 The SHAP results further emphasize the importance of recent growth and lagged housing-price information.
 
