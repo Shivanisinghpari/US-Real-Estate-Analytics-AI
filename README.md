@@ -456,49 +456,64 @@ These directions are intended as potential extensions rather than components of 
 
 # 📁 Repository Structure
 
-```text
 US-Real-Estate-Analytics-AI/
 │
 ├── data/
 │   ├── processed/
+│   │   ├── cleaned_us_housing_market.csv
+│   │   ├── ml_features.csv
+│   │   └── real_estate_analytics.db
+│   │
 │   └── forecasts/
 │       ├── explainability/
+│       ├── regime_analysis/
 │       ├── regime_aware/
-│       └── final_model_comparison.csv
+│       ├── research_results/
+│       ├── final_model_comparison.csv
+│       ├── final_regime_comparison.csv
+│       ├── future_price_forecast.csv
+│       ├── future_forecast_with_uncertainty.csv
+│       └── ...
 │
 ├── ML/
 │   ├── Forecasting/
 │   │   ├── arima_baseline.py
-│   │   ├── sarima_model.py
-│   │   ├── model_evaluation.py
 │   │   ├── forecast_visualization.py
+│   │   ├── model_evaluation.py
+│   │   ├── sarima_model.py
 │   │   └── validate_forecast.py
 │   │
-│   └── Predictive/
-│       ├── ablation_study.py
-│       ├── benchmark_growth_models.py
-│       ├── feature_engineering.py
-│       ├── future_forecast.py
-│       ├── ml_baseline.py
-│       ├── ml_growth_model.py
-│       ├── model_comparison.py
-│       ├── model_significance_test.py
-│       ├── regime_analysis.py
-│       ├── regime_aware_model.py
-│       ├── residual_analysis.py
-│       └── walk_forward_validation_v1.py
-│
-├── data_pipeline.py
+│   ├── Predictive/
+│   │   ├── ablation_study.py
+│   │   ├── benchmark_growth_models.py
+│   │   ├── feature_engineering.py
+│   │   ├── final_forecasting_pipeline.py
+│   │   ├── final_research_results_visualization.py
+│   │   ├── forecast_uncertainty.py
+│   │   ├── future_forecast.py
+│   │   ├── future_forecast_visualization.py
+│   │   ├── ml_baseline.py
+│   │   ├── ml_growth_model.py
+│   │   ├── model_comparison.py
+│   │   ├── model_explainability.py
+│   │   ├── model_significance_test.py
+│   │   ├── regime_analysis.py
+│   │   ├── regime_aware_model.py
+│   │   ├── residual_analysis.py
+│   │   └── walk_forward_validation_v1.py
+│   │
+│   ├── forecasting_model.py
+│   └── time_series_analysis.py
 │
 ├── powerbi/
 │   ├── US_Real_Estate_Analytics_Dashboard.pbix
 │   └── US_Real_Estate_Analytics_Dashboard.png
 │
+├── data_pipeline.py
+├── database_pipeline.py
+├── test_queries.py
+├── .gitignore
 └── README.md
-```
-
----
-
 # 🛠️ Tech Stack
 
 ### Programming
