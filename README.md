@@ -456,6 +456,9 @@ These directions are intended as potential extensions rather than components of 
 
 # 📁 Repository Structure
 
+# 📁 Repository Structure
+
+```text
 US-Real-Estate-Analytics-AI/
 │
 ├── data/
@@ -514,6 +517,7 @@ US-Real-Estate-Analytics-AI/
 ├── test_queries.py
 ├── .gitignore
 └── README.md
+```
 # 🛠️ Tech Stack
 
 ### Programming
