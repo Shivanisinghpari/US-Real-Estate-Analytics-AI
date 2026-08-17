@@ -1,10 +1,8 @@
 # US Real Estate Analytics & AI Predictive Pipeline
 
-An end-to-end data engineering, forecasting, and explainable AI pipeline for analyzing and forecasting long-term United States housing-market trends.
+An end-to-end research-oriented framework for analyzing and forecasting long-term United States housing-market trends. The project integrates automated data acquisition, data preprocessing, feature engineering, statistical forecasting, machine-learning models, walk-forward validation, market-regime analysis, explainable AI, uncertainty estimation, and Power BI visualization.
 
-The project integrates automated data acquisition, data preprocessing, feature engineering, statistical forecasting, machine-learning models, market-regime analysis, walk-forward validation, model comparison, and explainable AI.
-
-The primary objective is to investigate whether historical housing-market dynamics, growth patterns, and market-regime information can improve forecasting accuracy and reliability under changing market conditions.
+The primary research objective is to investigate whether historical housing-market growth patterns and market-regime information can improve forecasting accuracy under changing market conditions.
 
 ---
 
