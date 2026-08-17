@@ -24,6 +24,25 @@ The project also incorporates multiple explainability techniques to investigate 
 
 ---
 
+## 🔬 Research Summary
+
+This project investigates whether historical housing-market growth dynamics and market-regime information can improve U.S. housing-price forecasting accuracy under changing market conditions.
+
+The study compares statistical time-series models (ARIMA and SARIMA) with machine-learning approaches based on Random Forest. Growth-aware and regime-aware extensions are evaluated using walk-forward validation to reduce temporal leakage and assess model performance across different historical market conditions.
+
+The analysis also incorporates Random Forest feature importance, permutation feature importance, and SHAP-based explainability to investigate which historical market characteristics contribute most strongly to predictions.
+
+### Main Research Findings
+
+- The **Growth-Aware Random Forest achieved the lowest overall MAPE of 2.42%** among the evaluated models.
+- Incorporating market-regime information reduced MAPE from **4.94% to 1.71% during Rapid Growth periods**, representing a **65.30% reduction in forecasting error**.
+- `Growth_Lag_1` was the most influential predictor in both Random Forest feature-importance and SHAP analyses.
+- Regime-aware modeling did **not** consistently outperform the original Random Forest across all market conditions, suggesting that its effectiveness is regime-dependent.
+- Future forecasts are accompanied by **empirical 95% prediction intervals** to explicitly represent forecast uncertainty.
+
+Overall, the results suggest that historical growth dynamics are important predictors of housing prices and that market-regime information can provide additional predictive value during rapidly changing market conditions.
+
+
 ## 🎯 Research Objective
 
 The central research question is:
