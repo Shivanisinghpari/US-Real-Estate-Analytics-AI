@@ -16,7 +16,8 @@ The forecasting framework evaluates multiple approaches, including:
 
 * ARIMA
 * SARIMA
-* Random Forest
+* Random Forest Baseline
+* Original Random Forest
 * Growth-Aware Random Forest
 * Regime-Aware Random Forest
 
@@ -34,14 +35,15 @@ The analysis also incorporates Random Forest feature importance, permutation fea
 
 ### Main Research Findings
 
-- The **Growth-Aware Random Forest achieved the lowest overall MAPE of 2.42%** among the evaluated models.
-- Incorporating market-regime information reduced MAPE from **4.94% to 1.71% during Rapid Growth periods**, representing a **65.30% reduction in forecasting error**.
-- `Growth_Lag_1` was the most influential predictor in both Random Forest feature-importance and SHAP analyses.
-- Regime-aware modeling did **not** consistently outperform the original Random Forest across all market conditions, suggesting that its effectiveness is regime-dependent.
-- Future forecasts are accompanied by **empirical 95% prediction intervals** to explicitly represent forecast uncertainty.
+* The **Growth-Aware Random Forest achieved the lowest overall MAPE of 2.42%** among the evaluated models.
+* Incorporating market-regime information reduced MAPE from **4.94% to 1.71% during Rapid Growth periods**, representing a **65.30% reduction in forecasting error**.
+* `Growth_Lag_1` was the most influential predictor in both Random Forest feature-importance and SHAP analyses.
+* Regime-aware modeling did **not** consistently outperform the original Random Forest across all market conditions, suggesting that its effectiveness is regime-dependent.
+* Future forecasts are accompanied by **empirical 95% prediction intervals** to explicitly represent forecast uncertainty.
 
 Overall, the results suggest that historical growth dynamics are important predictors of housing prices and that market-regime information can provide additional predictive value during rapidly changing market conditions.
 
+---
 
 ## 🎯 Research Objective
 
@@ -114,7 +116,7 @@ These features allow machine-learning models to capture short-term, historical, 
 
 ### Statistical Outlier Detection
 
-A Standard Deviation Z-Score framework is used to identify potentially anomalous observations and structural changes in historical market behavior.
+A Standard Deviation Z-Score framework is used to identify potentially anomalous observations and unusual historical market behavior.
 
 ---
 
@@ -194,7 +196,7 @@ MAPE was used as the primary model-selection metric because it provides an inter
 
 ### Overall Finding
 
-The **Random Forest Growth Model achieved the lowest overall MAPE of 2.42%**.
+The **Growth-Aware Random Forest achieved the lowest overall MAPE of 2.42%**.
 
 The Original Random Forest achieved the lowest MAE and RMSE among the Random Forest variants, while the Growth-Aware Random Forest achieved the lowest MAPE.
 
@@ -336,7 +338,7 @@ Walk-forward validation was used to evaluate model stability across multiple his
 
 ![Walk-Forward Model Comparison](data/forecasts/research_results/01_walk_forward_model_comparison.png)
 
-The Random Forest Growth Model achieved the lowest overall MAPE among the evaluated machine-learning models.
+The Random Forest Growth Model achieved the lowest overall MAPE among the evaluated models.
 
 ---
 
@@ -375,7 +377,7 @@ The final forecasting pipeline generates predictions for the next eight quarters
 
 ![Future Forecast Uncertainty](data/forecasts/research_results/04_future_forecast_uncertainty.png)
 
-The forecast begins after the final observed quarter, **April 2026**, and extends through **April 2028**.
+The forecast begins after the final observed quarter in the available historical dataset and extends across the subsequent eight quarters.
 
 The prediction interval illustrates the uncertainty associated with long-term housing-price forecasting rather than presenting predicted values as exact future outcomes.
 
@@ -535,24 +537,29 @@ US-Real-Estate-Analytics-AI/
 ├── .gitignore
 └── README.md
 ```
+
+---
+
 # 🛠️ Tech Stack & Methodology
 
-| Category | Technologies / Methods | Purpose |
-|----------|------------------------|---------|
-| Programming | Python | Data processing, forecasting, machine-learning experiments, and automation |
-| Data Processing | Pandas, NumPy | Data cleaning, transformation, feature engineering, and numerical analysis |
-| Data Acquisition | FRED | Automated retrieval of historical U.S. housing-market data |
-| Database | SQLite, SQL | Structured data storage, validation, and analytical queries |
-| Machine Learning | Scikit-learn, Random Forest | Housing-price prediction and comparative model evaluation |
-| Time-Series Forecasting | ARIMA, SARIMA | Statistical forecasting benchmarks |
-| Feature Engineering | Lag features, growth features, rolling statistics, temporal features | Capturing historical housing-market dynamics |
-| Validation | Walk-Forward Validation | Time-aware model evaluation and reduction of temporal leakage |
-| Market Analysis | Market-Regime Detection | Evaluation of model performance under different housing-market conditions |
-| Explainable AI | SHAP, Permutation Importance, Random Forest Feature Importance | Understanding feature contributions and model behavior |
-| Uncertainty Estimation | Empirical Prediction Intervals | Quantifying uncertainty around future forecasts |
-| Visualization | Matplotlib, Power BI | Research-result visualization and interactive business intelligence |
-| Business Intelligence | Microsoft Power BI | Interactive exploration of long-term housing-market trends |
-| Version Control | Git, GitHub | Project versioning, reproducibility, and research presentation |
+| Category                | Technologies / Methods                                               | Purpose                                                                    |
+| ----------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Programming             | Python                                                               | Data processing, forecasting, machine-learning experiments, and automation |
+| Data Processing         | Pandas, NumPy                                                        | Data cleaning, transformation, feature engineering, and numerical analysis |
+| Data Acquisition        | FRED                                                                 | Automated retrieval of historical U.S. housing-market data                 |
+| Database                | SQLite, SQL                                                          | Structured data storage, validation, and analytical queries                |
+| Machine Learning        | Scikit-learn, Random Forest                                          | Housing-price prediction and comparative model evaluation                  |
+| Time-Series Forecasting | ARIMA, SARIMA                                                        | Statistical forecasting benchmarks                                         |
+| Feature Engineering     | Lag features, growth features, rolling statistics, temporal features | Capturing historical housing-market dynamics                               |
+| Validation              | Walk-Forward Validation                                              | Time-aware model evaluation and reduction of temporal leakage              |
+| Market Analysis         | Market-Regime Detection                                              | Evaluation of model performance under different housing-market conditions  |
+| Explainable AI          | SHAP, Permutation Importance, Random Forest Feature Importance       | Understanding feature contributions and model behavior                     |
+| Uncertainty Estimation  | Empirical Prediction Intervals                                       | Quantifying uncertainty around future forecasts                            |
+| Visualization           | Matplotlib, Power BI                                                 | Research-result visualization and interactive business intelligence        |
+| Business Intelligence   | Microsoft Power BI                                                   | Interactive exploration of long-term housing-market trends                 |
+| Version Control         | Git, GitHub                                                          | Project versioning, reproducibility, and research presentation             |
+
+---
 
 # ▶️ Reproducibility
 
@@ -562,52 +569,52 @@ The project is organized into separate stages so that the data-processing, forec
 
 The main workflow consists of:
 
-1. **Data Acquisition**  
+1. **Data Acquisition**
    Retrieve historical U.S. housing-market data from the FRED system.
 
-2. **Data Processing**  
+2. **Data Processing**
    Clean, validate, transform, and store the historical data using Python and Pandas.
 
-3. **Database Pipeline**  
+3. **Database Pipeline**
    Load processed data into SQLite and perform validation queries.
 
-4. **Feature Engineering**  
+4. **Feature Engineering**
    Generate temporal, lag-based, growth, and rolling statistical features.
 
-5. **Statistical Forecasting**  
+5. **Statistical Forecasting**
    Run ARIMA and SARIMA models as statistical forecasting benchmarks.
 
-6. **Machine-Learning Forecasting**  
+6. **Machine-Learning Forecasting**
    Train Random Forest models, including the baseline, original, growth-aware, and regime-aware approaches.
 
-7. **Walk-Forward Validation**  
+7. **Walk-Forward Validation**
    Evaluate models sequentially using historical training windows and subsequent unseen observations.
 
-8. **Market-Regime Analysis**  
+8. **Market-Regime Analysis**
    Evaluate forecasting performance across Declining, Moderate Growth, Rapid Growth, and Stable market conditions.
 
-9. **Model Explainability**  
+9. **Model Explainability**
    Analyze feature contributions using Random Forest feature importance, permutation importance, and SHAP.
 
-10. **Future Forecasting**  
+10. **Future Forecasting**
     Generate forecasts for the next eight quarters.
 
-11. **Uncertainty Estimation**  
+11. **Uncertainty Estimation**
     Construct empirical 95% prediction intervals using historical walk-forward residuals.
 
-12. **Visualization**  
+12. **Visualization**
     Generate research-result figures and explore long-term housing-market trends through Power BI.
 
 ## Main Scripts
 
 The major components are organized as follows:
 
-- `data_pipeline.py` — data acquisition, cleaning, transformation, and feature preparation.
-- `database_pipeline.py` — SQLite database creation and data ingestion.
-- `test_queries.py` — SQL validation and analytical queries.
-- `ML/Forecasting/` — ARIMA, SARIMA, evaluation, and forecasting visualization.
-- `ML/Predictive/` — machine-learning models, feature engineering, regime analysis, explainability, validation, and future forecasting.
-- `powerbi/` — Power BI dashboard source file and dashboard preview.
+* `data_pipeline.py` — data acquisition, cleaning, transformation, and feature preparation.
+* `database_pipeline.py` — SQLite database creation and data ingestion.
+* `test_queries.py` — SQL validation and analytical queries.
+* `ML/Forecasting/` — ARIMA, SARIMA, evaluation, and forecasting visualization.
+* `ML/Predictive/` — machine-learning models, feature engineering, regime analysis, explainability, validation, and future forecasting.
+* `powerbi/` — Power BI dashboard source file and dashboard preview.
 
 ## Reproducing the Experiments
 
@@ -623,6 +630,43 @@ cd US-Real-Estate-Analytics-AI
 # Install the required Python packages
 pip install pandas numpy scikit-learn statsmodels shap matplotlib
 ```
+
+### Running the Pipeline
+
+After installing the required dependencies, the main components can be executed independently according to the experimental workflow described above.
+
+The repository contains the processed datasets and generated research outputs used to document the completed experiments.
+
+Generated datasets and forecasting outputs are organized under:
+
+```text
+data/processed/
+data/forecasts/
+```
+
+Research-result visualizations are stored under:
+
+```text
+data/forecasts/research_results/
+```
+
+The Power BI dashboard source file is available under:
+
+```text
+powerbi/US_Real_Estate_Analytics_Dashboard.pbix
+```
+
+Individual scripts under `ML/Forecasting/` and `ML/Predictive/` correspond to specific stages of the experimental workflow.
+
+### Reproducibility Considerations
+
+The experiments use chronological data and walk-forward validation to reduce temporal leakage.
+
+Model results may vary slightly depending on the Python environment, package versions, and model randomization settings.
+
+The repository includes the processed datasets and generated research outputs used to document the completed experiments, allowing the reported results to be inspected without rerunning every stage of the pipeline.
+
+---
 
 # 📈 Project Status
 
@@ -653,14 +697,16 @@ pip install pandas numpy scikit-learn statsmodels shap matplotlib
 * Empirical prediction intervals
 * Research-result visualizations
 * Research interpretation and documentation
-
-## Current Focus
-
 * Final forecasting pipeline integration
-* Future prediction automation
-* Final repository cleanup
 * Reproducibility documentation
-* Research-oriented presentation of the completed results
+
+## Project State
+
+The core experimental and analytical components of the project are complete.
+
+The repository now contains the data pipeline, forecasting models, predictive experiments, validation procedures, explainability analysis, uncertainty estimation, research visualizations, and Power BI dashboard.
+
+The remaining work is limited to final repository housekeeping and optional automation improvements.
 
 ---
 
@@ -677,3 +723,4 @@ The strongest regime-specific result was a **65.30% reduction in MAPE**, from **
 However, the experiments also demonstrate that this benefit is not universal. The Regime-Aware Random Forest performed worse during Stable and Declining periods, highlighting the importance of evaluating forecasting strategies across different market conditions.
 
 Overall, the project provides a complete experimental framework for investigating how historical market dynamics and regime information can influence housing-price forecasting performance while explicitly considering model validation, explainability, and prediction uncertainty.
+
