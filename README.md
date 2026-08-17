@@ -622,6 +622,7 @@ cd US-Real-Estate-Analytics-AI
 
 # Install the required Python packages
 pip install pandas numpy scikit-learn statsmodels shap matplotlib
+```
 
 # 📈 Project Status
 
