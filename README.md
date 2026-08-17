@@ -1,8 +1,8 @@
 # US Real Estate Analytics & AI Predictive Pipeline
 
-An end-to-end data engineering, forecasting, and explainable AI pipeline for analyzing and predicting long-term United States housing market trends.
+An end-to-end data engineering, forecasting, and explainable AI pipeline for analyzing and forecasting long-term United States housing-market trends.
 
-The project integrates automated data acquisition, data preprocessing, feature engineering, statistical forecasting, machine-learning models, market-regime analysis, walk-forward validation, and model explainability.
+The project integrates automated data acquisition, data preprocessing, feature engineering, statistical forecasting, machine-learning models, market-regime analysis, walk-forward validation, model comparison, and explainable AI.
 
 The primary objective is to investigate whether historical housing-market dynamics, growth patterns, and market-regime information can improve forecasting accuracy and reliability under changing market conditions.
 
@@ -10,7 +10,7 @@ The primary objective is to investigate whether historical housing-market dynami
 
 ## 🚀 Project Overview
 
-This project provides an end-to-end framework for the analysis and forecasting of U.S. housing-market data.
+This project provides an end-to-end framework for analyzing and forecasting U.S. housing-market data.
 
 Historical quarterly housing-market data is automatically processed through a data engineering pipeline and transformed into analytics-ready datasets for SQL, Power BI, statistical forecasting, and machine-learning experiments.
 
@@ -19,10 +19,10 @@ The forecasting framework evaluates multiple approaches, including:
 * ARIMA
 * SARIMA
 * Random Forest
-* Growth-aware Random Forest
-* Regime-aware Random Forest
+* Growth-Aware Random Forest
+* Regime-Aware Random Forest
 
-The project also incorporates explainability techniques to investigate which historical market features contribute most strongly to model predictions.
+The project also incorporates multiple explainability techniques to investigate which historical market features contribute most strongly to model predictions.
 
 ---
 
@@ -43,7 +43,21 @@ The project investigates this question through:
 7. Walk-forward validation
 8. Model comparison
 9. Feature-importance analysis
-10. SHAP-based explainability
+10. Permutation feature importance
+11. SHAP-based explainability
+12. Future forecasting with empirical prediction intervals
+
+---
+
+## 📌 Key Results
+
+* **2.42% MAPE** — lowest overall MAPE achieved by the Growth-Aware Random Forest.
+* **65.30% reduction in MAPE** — improvement achieved by the Regime-Aware Random Forest during Rapid Growth periods.
+* **Growth_Lag_1** — the most influential feature in the Random Forest feature-importance analysis and the strongest feature in the SHAP analysis.
+* **8-quarter forecast horizon** — future housing-price predictions generated with empirical 95% prediction intervals.
+* **1963–2026** — historical U.S. housing-market period analyzed through the project pipeline and dashboard.
+
+The results indicate that model performance varies across market conditions rather than one forecasting approach consistently outperforming all others.
 
 ---
 
@@ -79,7 +93,7 @@ The forecasting pipeline creates temporal and historical-market features includi
 * Rolling Mean 4
 * Market Regime
 
-These features allow the machine-learning models to capture both short-term and seasonal housing-market dynamics.
+These features allow machine-learning models to capture short-term, historical, and seasonal housing-market dynamics.
 
 ### Statistical Outlier Detection
 
@@ -119,11 +133,11 @@ A more developed Random Forest model incorporates historical price and growth fe
 
 ### Growth-Aware Random Forest
 
-The growth-aware model explicitly incorporates historical housing-price growth dynamics into the feature set.
+The Growth-Aware Random Forest explicitly incorporates historical housing-price growth dynamics into the feature set.
 
 ### Regime-Aware Random Forest
 
-The regime-aware model incorporates historical market conditions into the forecasting process.
+The Regime-Aware Random Forest incorporates historical market conditions into the forecasting process.
 
 Four market regimes are analyzed:
 
@@ -150,14 +164,14 @@ The regime-aware experiment used five sequential validation folds covering histo
 
 The following results were obtained from the completed forecasting experiments.
 
-| Model | MAE | RMSE | MAPE |
-|---|---:|---:|---:|
-| Random Forest Growth Model | 8,676.12 | 10,729.52 | **2.42%** |
-| Random Forest Original | **7,674.84** | **9,911.15** | 2.71% |
-| Regime-Aware Random Forest | 7,690.20 | 9,936.54 | 2.72% |
-| SARIMA(1,1,1)(1,1,1,4) | 36,308.37 | 47,377.76 | 9.26% |
-| ARIMA(1,1,1) | 59,836.50 | 71,855.06 | 15.55% |
-| Random Forest Baseline | 92,126.11 | 107,026.55 | 24.08% |
+| Model                      |          MAE |         RMSE |      MAPE |
+| -------------------------- | -----------: | -----------: | --------: |
+| Random Forest Growth Model |     8,676.12 |    10,729.52 | **2.42%** |
+| Random Forest Original     | **7,674.84** | **9,911.15** |     2.71% |
+| Regime-Aware Random Forest |     7,690.20 |     9,936.54 |     2.72% |
+| SARIMA(1,1,1)(1,1,1,4)     |    36,308.37 |    47,377.76 |     9.26% |
+| ARIMA(1,1,1)               |    59,836.50 |    71,855.06 |    15.55% |
+| Random Forest Baseline     |    92,126.11 |   107,026.55 |    24.08% |
 
 MAPE was used as the primary model-selection metric because it provides an interpretable percentage-based measure of forecasting error.
 
@@ -165,34 +179,34 @@ MAPE was used as the primary model-selection metric because it provides an inter
 
 The **Random Forest Growth Model achieved the lowest overall MAPE of 2.42%**.
 
-The original Random Forest achieved the lowest MAE and RMSE among the Random Forest variants, while the growth-aware model achieved the lowest percentage forecasting error.
+The Original Random Forest achieved the lowest MAE and RMSE among the Random Forest variants, while the Growth-Aware Random Forest achieved the lowest MAPE.
 
-Therefore, the growth-aware model is considered the best overall model when MAPE is used as the primary selection criterion.
+Therefore, the Growth-Aware Random Forest is considered the best overall model when MAPE is used as the primary model-selection criterion.
 
 ---
 
 # 📈 Regime-Aware Forecasting
 
-The regime-aware Random Forest was evaluated separately across four historical market conditions.
+The Regime-Aware Random Forest was evaluated separately across four historical market conditions.
 
-| Market Regime | Original RF MAPE | Regime-Aware RF MAPE | MAPE Improvement |
-|---|---:|---:|---:|
-| Declining | 3.25% | 3.55% | -9.35% |
-| Moderate Growth | 2.88% | 2.42% | +15.91% |
-| Rapid Growth | 4.94% | **1.71%** | **+65.30%** |
-| Stable | 0.82% | 2.15% | -162.76% |
+| Market Regime   | Original RF MAPE | Regime-Aware RF MAPE | MAPE Improvement |
+| --------------- | ---------------: | -------------------: | ---------------: |
+| Declining       |            3.25% |                3.55% |           -9.35% |
+| Moderate Growth |            2.88% |                2.42% |          +15.91% |
+| Rapid Growth    |            4.94% |            **1.71%** |      **+65.30%** |
+| Stable          |            0.82% |                2.15% |         -162.76% |
 
 ## Key Finding
 
 The most significant result occurs during **Rapid Growth** periods.
 
-The original Random Forest achieved a MAPE of **4.94%**, while the regime-aware model reduced this to **1.71%**.
+The Original Random Forest achieved a MAPE of **4.94%**, while the Regime-Aware Random Forest reduced this to **1.71%**.
 
 This represents a **65.30% reduction in MAPE**.
 
-The result suggests that explicitly incorporating market-regime information can substantially improve forecasting during rapidly changing housing-market conditions.
+The result suggests that incorporating market-regime information can substantially improve forecasting performance during rapidly changing housing-market conditions.
 
-However, the regime-aware model does not outperform the original model in every regime.
+However, the Regime-Aware Random Forest does not outperform the Original Random Forest in every regime.
 
 Its performance:
 
@@ -209,7 +223,7 @@ Instead, they provide evidence that its usefulness is **regime-dependent**, with
 
 # 🔍 Model Explainability
 
-Model explainability was performed to investigate which features contribute most strongly to the Random Forest predictions.
+Model explainability was performed to investigate which features contribute most strongly to Random Forest predictions.
 
 Three complementary approaches were evaluated:
 
@@ -221,16 +235,16 @@ Three complementary approaches were evaluated:
 
 The strongest features identified by the Random Forest were:
 
-| Rank | Feature | Importance |
-|---:|---|---:|
-| 1 | Growth_Lag_1 | **0.2698** |
-| 2 | Growth_Lag_4 | 0.2357 |
-| 3 | Quarter | 0.1066 |
-| 4 | Price_Lag_1 | 0.0946 |
-| 5 | Price_Lag_4 | 0.0852 |
-| 6 | Time_Index | 0.0781 |
-| 7 | Rolling_Mean_4 | 0.0741 |
-| 8 | Year | 0.0558 |
+| Rank | Feature        | Importance |
+| ---: | -------------- | ---------: |
+|    1 | Growth_Lag_1   | **0.2698** |
+|    2 | Growth_Lag_4   |     0.2357 |
+|    3 | Quarter        |     0.1066 |
+|    4 | Price_Lag_1    |     0.0946 |
+|    5 | Price_Lag_4    |     0.0852 |
+|    6 | Time_Index     |     0.0781 |
+|    7 | Rolling_Mean_4 |     0.0741 |
+|    8 | Year           |     0.0558 |
 
 The results indicate that recent housing-market growth dynamics are particularly important to the Random Forest model.
 
@@ -242,26 +256,26 @@ Permutation analysis provided additional evidence that `Growth_Lag_1` is the mos
 
 The measured importance of the remaining features was substantially smaller, while some features produced slightly negative permutation scores.
 
-Negative permutation importance does not necessarily mean that the feature is inherently harmful. It can occur when the feature provides little independent predictive information or when correlated features allow the model to recover similar information through other variables.
+Negative permutation importance does not necessarily mean that a feature is inherently harmful. It can occur when a feature provides little independent predictive information or when correlated features allow the model to recover similar information through other variables.
 
 ---
 
 ## SHAP Explainability
 
-SHAP analysis was subsequently enabled to provide a more detailed explanation of feature contributions.
+SHAP analysis was used to provide a more detailed explanation of feature contributions.
 
 The resulting mean absolute SHAP importance was:
 
-| Rank | Feature | Mean Absolute SHAP |
-|---:|---|---:|
-| 1 | Growth_Lag_1 | **0.6372** |
-| 2 | Price_Lag_1 | 0.5900 |
-| 3 | Price_Lag_4 | 0.4797 |
-| 4 | Growth_Lag_4 | 0.3798 |
-| 5 | Time_Index | 0.3340 |
-| 6 | Quarter | 0.3238 |
-| 7 | Rolling_Mean_4 | 0.2448 |
-| 8 | Year | 0.2184 |
+| Rank | Feature        | Mean Absolute SHAP |
+| ---: | -------------- | -----------------: |
+|    1 | Growth_Lag_1   |         **0.6372** |
+|    2 | Price_Lag_1    |             0.5900 |
+|    3 | Price_Lag_4    |             0.4797 |
+|    4 | Growth_Lag_4   |             0.3798 |
+|    5 | Time_Index     |             0.3340 |
+|    6 | Quarter        |             0.3238 |
+|    7 | Rolling_Mean_4 |             0.2448 |
+|    8 | Year           |             0.2184 |
 
 The SHAP results further emphasize the importance of recent growth and lagged housing-price information.
 
@@ -275,13 +289,13 @@ The project includes an interactive Power BI dashboard for exploring long-term U
 
 ## Dashboard Highlights
 
-- Highest Median House Price: **$443K**
-- Average YoY Price Growth: **5.29%**
-- Total Quarterly Records: **254**
-- Interactive **Year slicer**
-- Long-term median house-price trend
-- Year-over-Year housing-price growth analysis
-- Annual average median house-price comparison
+* Highest Median House Price: **$443K**
+* Average YoY Price Growth: **5.29%**
+* Total Quarterly Records: **254**
+* Interactive **Year slicer**
+* Long-term median house-price trend
+* Year-over-Year housing-price growth analysis
+* Annual average median house-price comparison
 
 ### Dashboard Preview
 
@@ -292,6 +306,7 @@ The project includes an interactive Power BI dashboard for exploring long-term U
 The interactive Power BI source file is available here:
 
 [**US_Real_Estate_Analytics_Dashboard.pbix**](./powerbi/US_Real_Estate_Analytics_Dashboard.pbix)
+
 ---
 
 # 🔬 Research Results
@@ -304,24 +319,24 @@ Walk-forward validation was used to evaluate model stability across multiple his
 
 ![Walk-Forward Model Comparison](data/forecasts/research_results/01_walk_forward_model_comparison.png)
 
-The Random Forest Growth model achieved the lowest overall MAPE among the evaluated machine-learning models.
+The Random Forest Growth Model achieved the lowest overall MAPE among the evaluated machine-learning models.
 
 ---
 
 ## 2. Market-Regime Comparison
 
-The regime-aware model was evaluated across four market conditions:
+The Regime-Aware Random Forest was evaluated across four market conditions:
 
-- Declining
-- Moderate Growth
-- Rapid Growth
-- Stable
+* Declining
+* Moderate Growth
+* Rapid Growth
+* Stable
 
 ![Market Regime Comparison](data/forecasts/research_results/02_market_regime_comparison.png)
 
-The largest improvement occurred during Rapid Growth periods, where the regime-aware model reduced MAPE from **4.94% to 1.71%**, representing a 65.30% reduction in MAPE.
+The largest improvement occurred during Rapid Growth periods, where the Regime-Aware Random Forest reduced MAPE from **4.94% to 1.71%**, representing a **65.30% reduction in MAPE**.
 
-However, the regime-aware model did not outperform the original model in every market regime, indicating that its effectiveness is dependent on market conditions.
+However, the Regime-Aware Random Forest did not outperform the Original Random Forest in every market regime, indicating that its effectiveness depends on market conditions.
 
 ---
 
@@ -345,7 +360,101 @@ The final forecasting pipeline generates predictions for the next eight quarters
 
 The forecast begins after the final observed quarter, **April 2026**, and extends through **April 2028**.
 
-The prediction interval illustrates the uncertainty associated with long-term housing-price forecasting rather than presenting the predicted values as exact future outcomes.
+The prediction interval illustrates the uncertainty associated with long-term housing-price forecasting rather than presenting predicted values as exact future outcomes.
+
+---
+
+# ⚠️ Limitations
+
+The current experiments have several limitations that should be considered when interpreting the results:
+
+* The forecasting framework primarily relies on historical housing-price dynamics and engineered temporal features.
+* The current experiments use a limited set of macroeconomic and housing-market variables.
+* Historical market-regime definitions may not fully capture the complexity of real-world economic conditions.
+* Long-horizon forecasts accumulate uncertainty as the prediction horizon increases.
+* The empirical prediction interval is based on historical walk-forward residuals and therefore assumes that future forecast errors are reasonably represented by historical errors.
+* The results are based on historical U.S. housing-market behavior and may not generalize directly to other countries or housing markets.
+* Model performance may change as new economic conditions emerge.
+
+These limitations provide opportunities for further research rather than definitive conclusions about future housing-market behavior.
+
+---
+
+# 🔬 Research Findings & Contribution
+
+This project provides an empirical evaluation of whether historical growth dynamics and market-regime information can improve U.S. housing-price forecasting under different market conditions.
+
+The integrated framework combines:
+
+1. Automated data acquisition
+2. Data cleaning and preprocessing
+3. Feature engineering
+4. Statistical forecasting
+5. Machine-learning forecasting
+6. Growth-aware modeling
+7. Market-regime detection
+8. Regime-aware forecasting
+9. Walk-forward validation
+10. Model comparison
+11. Feature importance analysis
+12. Permutation feature importance
+13. SHAP explainability
+14. Future forecasting with prediction intervals
+15. Business intelligence visualization
+
+The main finding is that **market-regime information can substantially improve forecasting performance under specific market conditions, particularly during Rapid Growth periods**.
+
+The **65.30% reduction in MAPE during Rapid Growth periods** provides the strongest evidence supporting the hypothesis that regime information can be useful during rapidly changing market conditions.
+
+At the same time, the deterioration observed during Stable and Declining periods demonstrates that regime-aware modeling introduces a trade-off and should be evaluated according to the specific forecasting conditions rather than being treated as universally superior.
+
+---
+
+# 📌 Research Interpretation
+
+The experiments suggest three main conclusions.
+
+### 1. Growth information matters
+
+Recent housing-market growth is consistently among the strongest predictors of future housing prices.
+
+`Growth_Lag_1` was the strongest feature according to the Random Forest feature-importance analysis and also ranked first in the SHAP analysis.
+
+### 2. Regime information matters under changing conditions
+
+Market-regime information is particularly valuable during periods of rapid housing-price growth, where the Original Random Forest experienced substantially higher forecasting error.
+
+The reduction from **4.94% to 1.71% MAPE** during Rapid Growth represents the strongest regime-specific improvement observed in the experiments.
+
+### 3. Model performance is regime-dependent
+
+No single modeling strategy performs best under every historical market condition.
+
+This suggests that future research could investigate **adaptive or dynamic model selection**, where the forecasting strategy changes according to the detected market regime.
+
+---
+
+# 🚀 Future Research Directions
+
+The current results provide several directions for further investigation:
+
+* Dynamic model selection based on detected market regime
+* Ensemble forecasting across statistical and machine-learning models
+* Hyperparameter optimization
+* Additional macroeconomic variables from FRED
+* Interest-rate and inflation features
+* Housing-market supply and demand indicators
+* Advanced time-series models
+* Gradient boosting models such as XGBoost
+* Temporal cross-validation strategies
+* More robust regime-detection techniques
+* Improved uncertainty estimation
+* Automated future forecasting and prediction delivery
+* Comparative evaluation across different U.S. housing indicators
+
+These directions are intended as potential extensions rather than components of the current completed experiments.
+
+---
 
 # 📁 Repository Structure
 
@@ -382,8 +491,10 @@ US-Real-Estate-Analytics-AI/
 │       └── walk_forward_validation_v1.py
 │
 ├── data_pipeline.py
+│
 ├── powerbi/
-│   └── US_Real_Estate_Analytics_Dashboard.pbix
+│   ├── US_Real_Estate_Analytics_Dashboard.pbix
+│   └── US_Real_Estate_Analytics_Dashboard.png
 │
 └── README.md
 ```
@@ -434,70 +545,23 @@ US-Real-Estate-Analytics-AI/
 
 ---
 
-# 🔬 Research Contribution
+# ▶️ Reproducibility
 
-The project demonstrates an integrated forecasting framework combining:
+The project is organized so that the major stages of the forecasting workflow are separated into data-processing, forecasting, predictive-modeling, and visualization components.
 
-1. Automated data acquisition
-2. Data cleaning and preprocessing
-3. Feature engineering
-4. Statistical forecasting
-5. Machine-learning forecasting
-6. Growth-aware modeling
-7. Market-regime detection
-8. Regime-aware forecasting
-9. Walk-forward validation
-10. Model comparison
-11. Feature importance analysis
-12. Permutation importance
-13. SHAP explainability
-14. Business intelligence visualization
+The main workflow consists of:
 
-The primary research finding is that **market-regime information can substantially improve forecasting performance during rapidly changing growth periods**, although the benefit varies across market conditions.
+1. Retrieve and process historical housing-market data.
+2. Generate engineered temporal and lag-based features.
+3. Run statistical forecasting benchmarks.
+4. Train and evaluate Random Forest forecasting models.
+5. Perform walk-forward validation.
+6. Evaluate market-regime performance.
+7. Analyze feature importance and SHAP explanations.
+8. Generate future forecasts and empirical prediction intervals.
+9. Visualize results through Power BI and research-result figures.
 
-The **65.30% reduction in MAPE during Rapid Growth periods** provides the strongest evidence supporting the regime-aware modeling hypothesis.
-
-At the same time, the deterioration in Stable and Declining regimes demonstrates that regime-aware modeling introduces a trade-off and should be evaluated according to the specific forecasting conditions rather than being treated as universally superior.
-
----
-
-# 📌 Research Interpretation
-
-The experiments suggest three important conclusions:
-
-### 1. Growth information matters
-
-Recent housing-market growth is consistently among the strongest predictors of future housing prices.
-
-### 2. Regime information matters under changing conditions
-
-Market-regime information is particularly valuable during periods of rapid housing-price growth, where the original Random Forest experienced substantially higher forecasting error.
-
-### 3. Model performance is regime-dependent
-
-No single modeling strategy performs best under every historical market condition.
-
-This suggests that future research could investigate **adaptive or dynamic model selection**, where the forecasting strategy changes according to the detected market regime.
-
----
-
-# 🚀 Future Research Directions
-
-The current results provide several directions for further investigation:
-
-* Dynamic model selection based on detected market regime
-* Ensemble forecasting across statistical and machine-learning models
-* Hyperparameter optimization
-* Additional macroeconomic variables from FRED
-* Interest-rate and inflation features
-* Housing-market supply and demand indicators
-* Advanced time-series models
-* Gradient boosting models such as XGBoost
-* Temporal cross-validation strategies
-* Confidence and prediction intervals
-* More robust regime-detection techniques
-* Automated future forecasting and prediction delivery
-* Comparative evaluation across different U.S. housing indicators
+The relevant scripts are organized under `ML/Forecasting/`, `ML/Predictive/`, and the project-level data pipeline.
 
 ---
 
@@ -517,23 +581,27 @@ The current results provide several directions for further investigation:
 * SARIMA forecasting
 * Random Forest baseline
 * Original Random Forest forecasting
-* Growth-aware Random Forest
+* Growth-Aware Random Forest
 * Walk-forward validation
 * Market-regime analysis
-* Regime-aware Random Forest
+* Regime-Aware Random Forest
 * Model comparison
 * Residual analysis
 * Random Forest feature importance
 * Permutation feature importance
 * SHAP explainability
-* Research interpretation
+* Future eight-quarter forecasting
+* Empirical prediction intervals
+* Research-result visualizations
+* Research interpretation and documentation
 
 ## Current Focus
 
 * Final forecasting pipeline integration
 * Future prediction automation
-* Final visualization and documentation
-* Research-oriented presentation of results
+* Final repository cleanup
+* Reproducibility documentation
+* Research-oriented presentation of the completed results
 
 ---
 
@@ -541,6 +609,12 @@ The current results provide several directions for further investigation:
 
 This project evolved from a data-engineering and business-intelligence pipeline into an experimental machine-learning forecasting framework.
 
-The final system combines **data engineering, predictive analytics, time-series forecasting, machine learning, market-regime analysis, and explainable AI** to investigate U.S. housing-market behavior.
+The final system combines **data engineering, predictive analytics, time-series forecasting, machine learning, market-regime analysis, explainable AI, and uncertainty estimation** to investigate U.S. housing-market behavior.
 
-The results demonstrate that incorporating historical growth dynamics and market conditions can provide meaningful improvements in forecasting accuracy under specific market regimes, particularly during rapid growth periods.
+The experiments indicate that historical growth dynamics are important predictors of future housing prices and that market-regime information can provide substantial forecasting benefits under specific conditions, particularly during Rapid Growth periods.
+
+The strongest regime-specific result was a **65.30% reduction in MAPE**, from **4.94% to 1.71%**, when comparing the Original Random Forest with the Regime-Aware Random Forest during Rapid Growth periods.
+
+However, the experiments also demonstrate that this benefit is not universal. The Regime-Aware Random Forest performed worse during Stable and Declining periods, highlighting the importance of evaluating forecasting strategies across different market conditions.
+
+Overall, the project provides a complete experimental framework for investigating how historical market dynamics and regime information can influence housing-price forecasting performance while explicitly considering model validation, explainability, and prediction uncertainty.
